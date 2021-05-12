@@ -1,4 +1,4 @@
-## Soundtry-Backend
+## Sountry-Backend
 
 <img src="https://github.com/biswajit-debnath/Soundtry-Backend/blob/main/mockup-images/Database%20ER%20diagram%20(crow's%20foot).png?raw=true"/>
 
