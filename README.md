@@ -45,3 +45,4 @@ CREATE TABLE video_by_category (
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
  );
 
+SELECT * from all_videos where video_id IN (SELECT video_id FROM `video_by_category` WHERE category_id = 1 || category_id = 2)
