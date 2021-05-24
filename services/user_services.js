@@ -35,3 +35,15 @@ exports.insert_video_attributes = async (curr_video_id, genre,user_gender, video
       return {status:200, data:`Video ${curr_video_id} uploaded to video_attributes`}
 
 }
+
+
+exports.get_all_videos = async (res) =>{
+  const query1 = `SELECT * FROM all_videos`;
+  try {
+    temp = await pool.query(query1);
+   
+  } catch (error) {
+    ErrorGenerator.generateError(error, res);
+  }
+  return((temp.rows))
+}
