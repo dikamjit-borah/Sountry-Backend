@@ -6,6 +6,7 @@ const http = require("http");
 const pg = require("pg");
 
 const login_routes = require("./routes/login_routes");
+const user_routes = require("./routes/user_routes");
 
 
 
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", login_routes);
-//app.use("/api/admin",  admin_routes);
+app.use("/api/user",  user_routes);
 //app.use("/api/agent", auth_routes);
 
 app.listen(port, () => {
