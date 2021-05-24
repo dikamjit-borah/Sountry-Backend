@@ -13,8 +13,8 @@ exports.create_new_user_service = async (req, res) => {
   let user_name = req.body.user_details.user_name;
   let gender = req.body.user_details.gender;
   let date_joined = req.body.user_details.date_joined;
-  let preferred_genres = req.body.user_details.preferred_categories;
-  let preferred_gender = req.body.user_details.preferred_gender;
+  let preferred_genres = JSON.stringify(req.body.user_preferences.preferred_genres);
+  let preferred_gender = JSON.stringify(req.body.user_preferences.preferred_gender);
   let phone = req.body.user_details.phone;
   let email = req.body.user_details.email;
   let password = req.body.user_details.password;
@@ -24,15 +24,20 @@ exports.create_new_user_service = async (req, res) => {
   const query2 = `INSERT INTO user_profiles (up_user_id, up_user_name, up_dp, up_full_name, up_gender, up_date_joined, up_preferred_genres, up_preferred_gender, up_phone, up_email, up_password)
     VALUES ('${curr_user_id}', '${user_name}', '${dp}', '${full_name}', '${gender}', '${date_joined}', '${preferred_genres}',' ${preferred_gender}', '${phone}',' ${email}', '${password}')`;
 
- try {
+  try {
     await pool.query(query1);
     await pool.query(query2);
- } catch (error) {
-     ErrorGenerator.generateError(error, res)
- }
+  } catch (error) {
+    ErrorGenerator.generateError(error, res);
+  }
 
- return {status:"200", data:"User successfully created"} 
-
+  return {
+    status: "200",
+    data: {
+      curr_user_id,
+      message: "User successfully created",
+    },
+  };
 };
 
 exports.authenticate_agent = async (user_id, user_password) => {
