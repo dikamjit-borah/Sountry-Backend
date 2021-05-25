@@ -6,7 +6,7 @@ function generateError(errorMessage, res,  errorCode = 500)
     if(errorMessage == "ReferenceError")
         res.send ("Cannot insert data into database. Try again after sometime.")
     else 
-        res.send(""+errorMessage)
+        res.send("ErrorGenerator: "+errorMessage)
     
 }
 

@@ -9,6 +9,8 @@ exports.create_new_user_service = async (req, res) => {
     "https://cdn1.iconfinder.com/data/icons/user-pictures/100/boy-256.png";
   var curr_user_id = new Date().valueOf();
 
+  console.log(req.body);
+
   let full_name = req.body.user_details.full_name;
   let user_name = req.body.user_details.user_name;
   let gender = req.body.user_details.gender;
@@ -40,17 +42,16 @@ exports.create_new_user_service = async (req, res) => {
   };
 };
 
-exports.authenticate_agent = async (user_id, user_password) => {
-  let agent;
-  try {
-    agent = await AGENTS_TABLE.findOne({
-      where: {
-        agent_id: user_id,
-      },
-    });
-  } catch (error) {
-    ErrorGenerator.generateError(error.name, res);
-  }
+exports.authenticate_user_service = async (user_name, res) => {
+  let user;
 
-  return agent;
+  const query1 = `SELECT up_password FROM user_profiles WHERE up_user_name = '${user_name}'`
+
+  try {
+     user = await pool.query(query1)
+  } catch (error) {
+    ErrorGenerator.generateError(error)
+  }
+  
+  return user.rows;
 };
