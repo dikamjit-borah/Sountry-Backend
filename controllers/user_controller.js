@@ -28,5 +28,11 @@ exports.upload_video = async (req, res) => {
  })
 
 
+ 
+
   
 };
+exports.get_videos = async (req, res) =>{
+   let videos = await user_services.get_all_videos(res)
+   res.send(videos);
+}
