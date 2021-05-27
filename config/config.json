@@ -1,15 +1,15 @@
  {
   "development": {
-    "username": "soundtryuser",
+    "user": "soundtryuser",
     "password": "password",
-    "database": "soundtrydb",
+    "database": "soundtrydb", 
     "host": "3.142.196.242",
     "dialect": "postgres"
   },
   "test": {
-    "username": "soundtryuser",
+    "user": "soundtryuser",
     "password": "password",
-    "database": "soundtrydb",
+    "database": "soundtrydb", 
     "host": "3.142.196.242",
     "dialect": "postgres"
   },
