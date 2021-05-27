@@ -36,3 +36,13 @@ exports.get_videos = async (req, res) =>{
    let videos = await user_services.get_all_videos(res)
    res.send(videos);
 }
+
+
+exports.get_user_details = async (req, res) =>{
+   
+   let user_id = req.params["id"];
+   console.log("Fetching details of user ", user_id);
+   let user = await user_services.user_details_service(user_id)
+   res.send(user);
+}
+

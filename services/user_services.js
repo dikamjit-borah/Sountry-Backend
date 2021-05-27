@@ -47,3 +47,14 @@ exports.get_all_videos = async (res) =>{
   }
   return((temp.rows))
 }
+
+exports.user_details_service = async (user_id, res) => {
+  const query1 = `SELECT * FROM user_profiles WHERE up_user_id = '${user_id}'`;
+  let results;
+  try {
+    results = await pool.query(query1)
+  } catch (error) {
+    ErrorGenerator.generateError(error, res);
+  }
+  return results.rows
+}
