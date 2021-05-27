@@ -14,10 +14,9 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "soundtryuser",
+    "user": "soundtryuser",
     "password": "password",
-    "database": "soundtrydb",
-    "host": "3.142.196.242",
-    "dialect": "postgres"
+    "database": "soundtrydb", 
+    "host": "3.142.196.242"
   }
 }
