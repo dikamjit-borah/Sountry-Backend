@@ -7,5 +7,7 @@ user_router.post("/upload", user_controller.upload_video);
 
 user_router.get("/videos", user_controller.get_videos);
 
+user_router.get("/:id", user_controller.get_user_details);
+
 
 module.exports = user_router
