@@ -7,6 +7,7 @@ const pg = require("pg");
 
 const login_routes = require("./routes/login_routes");
 const user_routes = require("./routes/user_routes");
+const connection_routes = require("./routes/connection_routes");
 
 
 
@@ -23,7 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", login_routes);
 app.use("/api/user",  user_routes);
-//app.use("/api/agent", auth_routes);
+app.use("/api/connect",  connection_routes);
+
 
 app.listen(port, () => {
   console.log(`App running on port ${port}`);

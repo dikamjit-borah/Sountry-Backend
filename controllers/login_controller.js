@@ -28,7 +28,7 @@ exports.authenticate_user = async(req, res)=>{
     else if(db_password[0].up_password == password)
     {
         const token = jwt.sign({user_name}, process.env.JWT_SECRET)
-        //lolcalstorage
+  
         res.json({status:200, data:{
             user_id: db_password[0].up_user_id,
             token:`${token}`
