@@ -7,7 +7,7 @@ connection_router.post("/", connection_controller.send_request);
 connection_router.put("/update", connection_controller.update_request);
 
 //connection_router.get("/my_connections", connection_controller.get_connections);
-// connection_router.get("/my_notifications", connection_controller.get_notifications);
+connection_router.get("/notifications", connection_controller.get_notifications);
 
 
 module.exports = connection_router
