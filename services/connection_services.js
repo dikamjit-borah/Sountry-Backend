@@ -63,3 +63,15 @@ exports.get_notifications_service = async(user_id, res) => {
     }
     return notifications.rows
 }
+
+
+exports.get_connections_service = async(user_id, res) => {
+    let connections;
+    const query1 = `select * from user_profiles where up_user_id in (SELECT user_id_2 FROM connections WHERE user_id_1 = '${user_id}' and is_connected = '1')`
+    try {
+        connections =  await pool.query(query1);
+    } catch (error) {
+        ErrorGenerator.generateError(error, res);
+    }
+    return connections.rows
+}

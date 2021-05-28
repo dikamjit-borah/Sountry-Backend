@@ -33,9 +33,20 @@ exports.get_notifications = async(req, res) => {
    
     console.log("Fetching notifications for user ", user_id );
 
-    let notifications_from_ids = await connection_services.get_notifications_service(user_id, res);
+    let notifications = await connection_services.get_notifications_service(user_id, res);
     
-    res.send(notifications_from_ids)
+    res.send(notifications)
 }
 
+
+
+exports.get_connections = async(req, res) => {
+    let user_id = req.query["user_id"]
+   
+    console.log("Fetching connections for user ", user_id );
+
+    let connections = await connection_services.get_connections_service(user_id, res);
+    
+    res.send(connections)
+}
 

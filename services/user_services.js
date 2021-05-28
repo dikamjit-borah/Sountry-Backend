@@ -58,3 +58,14 @@ exports.user_details_service = async (user_id, res) => {
   }
   return results.rows
 }
+
+exports.video_genres_service = async (video_id, res) => {
+  const query1 = `SELECT * FROM video_attributes WHERE va_video_id = '${video_id}'`;
+  let results;
+  try {
+    results = await pool.query(query1)
+  } catch (error) {
+    ErrorGenerator.generateError(error, res);
+  }
+  return results.rows
+}
