@@ -50,3 +50,23 @@ exports.get_connections = async(req, res) => {
     res.send(connections)
 }
 
+
+exports.check_connection = async(req, res) => {
+    let connect_with_id = req.query["connect_with_id"]
+    let request_by_id = req.query["request_by_id"]
+   
+    console.log(`Checking if ${request_by_id} is connected with me ${connect_with_id}`);
+
+    let is_connected = await connection_services.check_connection_service(connect_with_id, request_by_id, res);
+    
+    let len = is_connected.length
+    if(len == 0)
+        res.json({status:200, data:2})
+    else
+        res.json({status:200, data:is_connected[0]["is_connected"]})
+    
+
+   
+}
+
+
