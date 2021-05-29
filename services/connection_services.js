@@ -75,3 +75,15 @@ exports.get_connections_service = async(user_id, res) => {
     }
     return connections.rows
 }
+
+
+exports.check_connection_service =  async(connect_with_id, request_by_id, res) => {
+    let is_connected;
+    const query1 = `SELECT is_connected from connections where user_id_1 = '${connect_with_id}' and user_id_2 = '${request_by_id}'`
+    try {
+        is_connected =  await pool.query(query1);
+    } catch (error) {
+        ErrorGenerator.generateError(error, res);
+    }
+    return is_connected.rows
+}
