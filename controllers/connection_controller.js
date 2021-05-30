@@ -60,11 +60,20 @@ exports.check_connection = async(req, res) => {
     let is_connected = await connection_services.check_connection_service(connect_with_id, request_by_id, res);
     
     let len = is_connected.length
+    let ic;
     if(len == 0)
-        res.json({status:200, data:2})
+    {
+        ic = "NOT_CONNECTED"
+        res.json({status:200, data:ic})
+    }
+       
     else
-        res.json({status:200, data:is_connected[0]["is_connected"]})
+    {
+        ic = is_connected[0]["is_connected"]
+        res.json({status:200, data:ic})
     
+    }
+     
 
    
 }
