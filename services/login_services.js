@@ -34,10 +34,10 @@ exports.create_new_user_service = async (req, res) => {
   }
 
   return {
-    status: "200",
+    status: 200,
     data: {
       curr_user_id,
-      message: "User successfully created",
+      message: `User created with user id ${curr_user_id}`,
     },
   };
 };
@@ -45,7 +45,7 @@ exports.create_new_user_service = async (req, res) => {
 exports.authenticate_user_service = async (user_name, res) => {
   let user;
 
-  const query1 = `SELECT up_password FROM user_profiles WHERE up_user_name = '${user_name}'`
+  const query1 = `SELECT up_user_id, up_password FROM user_profiles WHERE up_user_name = '${user_name}'`
 
   try {
      user = await pool.query(query1)
