@@ -37,10 +37,30 @@ exports.insert_video_attributes = async (curr_video_id, genre,user_gender, video
 }
 
 
-exports.get_all_videos = async (res) =>{
-  const query1 = `SELECT * FROM all_videos`;
+exports.get_all_videos = async (res,userPrefs,prefGender) =>{
+  let userPrefsString=''
+  let prefGenderString=''
+  const changePrefArrayToString = ()=> userPrefs.forEach((pref,i)=> {
+    if(i==0)
+      userPrefsString=`'${pref}'`  
+    else
+    userPrefsString=userPrefsString + ',' + `'${pref}'`
+  })
+  const changePrefGenderArrayToString = ()=> prefGender.forEach((pref,i)=> {
+    if(i==0)
+      prefGenderString=`'${pref}'`  
+    else
+    prefGenderString=prefGenderString + ',' + `'${pref}'`
+  })
+  changePrefArrayToString()
+  changePrefGenderArrayToString()
+  console.log(userPrefsString);
+  const query1 = `select * from all_videos where video_id In (select distinct(va_video_id) from video_attributes where va_genre In (` + `${userPrefsString}` + `) And va_gender In (` + `${prefGenderString}` + `) Limit 10 Offset 0)`;
+  console.log(query1);
+  let temp;
   try {
     temp = await pool.query(query1);
+    console.log(temp.rows);
    
   } catch (error) {
     ErrorGenerator.generateError(error, res);
