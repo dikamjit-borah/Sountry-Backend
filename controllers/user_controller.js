@@ -33,7 +33,11 @@ exports.upload_video = async (req, res) => {
   
 };
 exports.get_videos = async (req, res) =>{
-   let videos = await user_services.get_all_videos(res)
+   const {user_id} = req.body
+   let user = await user_services.user_details_service(user_id)
+   const userPrefs =JSON.parse(user[0].up_preferred_genres)
+   const prefGender= JSON.parse(user[0].up_preferred_gender)
+   let videos = await user_services.get_all_videos(res,userPrefs,prefGender)
    res.send(videos);
 }
 
