@@ -46,3 +46,18 @@ exports.get_user_details = async (req, res) =>{
    res.send(user);
 }
 
+
+exports.get_video_genres = async (req, res) =>{
+   let video_id = req.query["video_id"];
+   console.log("Fetching details of video ", video_id);
+   let video = await user_services.video_genres_service(video_id)
+   
+   video_genres = []
+   for(let i = 0; i<video.length; i++)
+   {
+      video_genres.push(video[i]['va_genre'])
+   }
+   res.send(video_genres);
+   
+}
+
