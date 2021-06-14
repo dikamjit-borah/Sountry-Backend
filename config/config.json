@@ -3,21 +3,21 @@
     "user": "soundtryuser",
     "password": "password",
     "database": "soundtrydb", 
-    "host": "3.135.192.47",
+    "host": "18.116.8.19",
     "dialect": "postgres"
   },
   "test": {
     "user": "soundtryuser",
     "password": "password",
     "database": "soundtrydb", 
-    "host": "3.135.192.47",
+    "host": "18.116.8.19",
     "dialect": "postgres"
   },
   "production": {
     "user": "soundtryuser",
     "password": "password",
     "database": "soundtrydb", 
-    "host": "3.135.192.47",
+    "host": "18.116.8.19",
     "dialect": "postgres"
   }
 }
