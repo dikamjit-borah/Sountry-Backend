@@ -104,3 +104,36 @@ exports.update_preferences_service = async (user_id, preferred_genres, preferred
   }
   return {status:200, message:"Preferences updated successfully"}
 }
+
+exports.post_requirement_service = async (req, res) =>{
+
+  let post_id = new Date().valueOf()
+  let user_id = req.body["user_id"]
+  let user_name = req.body["user_name"]
+  let post_requirement = req.body["post_requirement"]
+  let post_description = req.body["post_description"]
+  let user_phone = req.body["user_phone"]
+
+
+  const query1 = `INSERT INTO forum (post_id, user_id, user_name, post_requirement, post_description, user_phone)
+  VALUES ('${post_id}', '${user_id}', '${user_name}', '${post_requirement}', '${post_description}', '${user_phone}' )`;
+ 
+  let results;
+  try {
+    results = await pool.query(query1)
+  } catch (error) {
+    ErrorGenerator.generateError(error, res);
+  }
+  return {status:200, message:"Requirement posted"}
+}
+
+exports.fetch_forum_posts = async (res) =>{
+  const query1 = `SELECT * FROM forum`;
+  let results;
+  try {
+    results = await pool.query(query1)
+  } catch (error) {
+    ErrorGenerator.generateError(error, res);
+  }
+  return {status:200, data:results.rows}
+}

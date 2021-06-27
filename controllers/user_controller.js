@@ -78,4 +78,14 @@ exports.update_user_preferences = async (req, res) =>{
    res.send(user);
 }
 
+exports.add_new_requirement = async (req, res) => {
+   let isUploaded = await user_services.post_requirement_service(req, res)
+   res.send(isUploaded);
+}
+
+exports.get_forum_posts = async (req, res) => {
+   let posts = await user_services.fetch_forum_posts(res)
+   res.send(posts);
+}
+
 
