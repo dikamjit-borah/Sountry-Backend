@@ -7,6 +7,9 @@ user_router.post("/videos", user_controller.get_videos);
 user_router.get("/video", user_controller.get_video_genres);
 user_router.get("/:id", user_controller.get_user_details);
 
+user_router.put("/preferences", user_controller.update_user_preferences);
+
+
 
 
 module.exports = user_router

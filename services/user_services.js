@@ -89,3 +89,18 @@ exports.video_genres_service = async (video_id, res) => {
   }
   return results.rows
 }
+
+
+exports.update_preferences_service = async (user_id, preferred_genres, preferred_gender, res) => {
+
+  //console.log("up_pref_service,", user_id, preferred_gender, preferred_genres);
+
+  const query1 = `UPDATE user_profiles SET up_preferred_gender = '${preferred_gender}', up_preferred_genres = '${preferred_genres}'  WHERE up_user_id = '${user_id}'`;
+  let results;
+  try {
+    results = await pool.query(query1)
+  } catch (error) {
+    ErrorGenerator.generateError(error, res);
+  }
+  return {status:200, message:"Preferences updated successfully"}
+}

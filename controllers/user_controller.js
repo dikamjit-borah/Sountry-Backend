@@ -53,6 +53,7 @@ exports.get_user_details = async (req, res) =>{
 
 exports.get_video_genres = async (req, res) =>{
    let video_id = req.query["video_id"];
+   
    console.log("Fetching details of video ", video_id);
    let video = await user_services.video_genres_service(video_id)
    
@@ -64,4 +65,17 @@ exports.get_video_genres = async (req, res) =>{
    res.send(video_genres);
    
 }
+
+
+
+exports.update_user_preferences = async (req, res) =>{
+   
+   let user_id = req.body["id"];
+   let preferred_genres = JSON.stringify(req.body.preferred_genres);
+   let preferred_gender = JSON.stringify(req.body.preferred_gender);
+   console.log("Updating preferences of user ", user_id);
+   let user = await user_services.update_preferences_service(user_id, preferred_genres, preferred_gender, res)
+   res.send(user);
+}
+
 
