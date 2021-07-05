@@ -113,10 +113,11 @@ exports.post_requirement_service = async (req, res) =>{
   let post_requirement = req.body["post_requirement"]
   let post_description = req.body["post_description"]
   let user_phone = req.body["user_phone"]
+  let requirement_date = req.body["requirement_date"]
 
 
-  const query1 = `INSERT INTO forum (post_id, user_id, user_name, post_requirement, post_description, user_phone)
-  VALUES ('${post_id}', '${user_id}', '${user_name}', '${post_requirement}', '${post_description}', '${user_phone}' )`;
+  const query1 = `INSERT INTO forum (post_id, user_id, user_name, post_requirement, post_description, user_phone, requirement_date)
+  VALUES ('${post_id}', '${user_id}', '${user_name}', '${post_requirement}', '${post_description}', '${user_phone}', '${requirement_date}' )`;
  
   let results;
   try {
